@@ -1,2 +1,10 @@
 @import 'reset';
 @import 'defaults';
+@import 'fontello.scss';
+
+.game-card {
+  animation-duration: 150ms !important;
+  -webkit-animation-duration: 150ms !important;
+  animation-timing-function: ease-in !important;
+  -webkit-animating-timing-function: ease-in !important;
+}

@@ -12,14 +12,20 @@
 
   <main class="main-content">
   </main>
-
+  <script type = "text/html" id="home">
+    <button class= "easy"> easy</button>
+    <button class = "hard"> hard </button>
+  </script>
   <script type="text/html" id="gameBoard">
     <div class="game-board">
       <% m.cards.forEach(function (card) { %>
-        <label class="game-tile">
+        <!-- attribute added to game-tile class, telling you the name of the icon with _. -->
+        <label class="game-tile" icon="<%- card %>">
           <input type="checkbox">
           <span class="game-card">
-            <span class="game-icon"><%- card %></span>
+            <span class="game-icon">
+              <span class="<%- card %>"></span>
+            </span>
           </span>
         </label>
       <% }) %>

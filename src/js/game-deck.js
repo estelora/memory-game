@@ -1,26 +1,47 @@
-// gameDeck will return an array with numPairs pairs
-// of cards, randomized...
+//gameDeck holds the memory deck and shuffles it
+
 app.gameDeck = function (numPairs) {
-  var cards = 'abcdefghijklmnop'.split('').slice(0, numPairs);
 
-  // Double my array, so ['a', 'b', 'c'] becomes
-  // ['a', 'b', 'c', 'a', 'b', 'c']
-  cards = cards.concat(cards);
+  var icons = [
+    'icon-droplet',
+    'icon-feather',
+    'icon-list',
+    'icon-moon',
+    'icon-eye',
+    'icon-lightbulb',
+    'icon-heart',
+    'icon-flag',
+    'icon-hourglass',
+    'icon-star',
+    'icon-camera',
+    'icon-search',
+    'icon-trash',
+    'icon-brush',
+    'icon-scissors',
+    'icon-music',
+    'icon-attach',
+    'icon-cloud',
+    'icon-umbrella',
+    'icon-leaf',
+    'icon-bug',
+    'icon-smile',
+    'icon-paw'
+  ];
 
-  function swap(arr, x, y) {
-    var tmp = arr[x];
-    arr[x] = arr[y];
-    arr[y] = tmp;
+  if (numPairs > icons.length) {
+    throw new Error("numPairs cannot be greater than " + icons.length + '.');
   }
 
-  function shuffle(arr) {
-    for (var i = 0; i < arr.length; ++i) {
-      var randomIndex = Math.floor(Math.random() * arr.length);
-      swap(arr, i, randomIndex);
-    }
+  // use lodash _.shuffle to shuffle cards
+  var shuffledDeck = _.shuffle(icons);
 
-    return arr;
-  }
+  //limit length of shuffle to gamePairCount
+  //concatenate the deck to itself to have 2 of each card
+  shuffledDeck.length = numPairs;
+  shuffledDeck= shuffledDeck.concat(shuffledDeck);
 
-  return shuffle(cards);
+  //shuffle the deck with pairs again
+  // lodash shuffle method yet again
+  shuffledDeck =_.shuffle(shuffledDeck);
+  return shuffledDeck;
 };
